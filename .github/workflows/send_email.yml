@@ -1,8 +1,7 @@
 name: Enviar e-mail todo dia às 13h
 
 on:
-  schedule:
-    - cron: "30 15 * * *"
+  workflow_dispatch:
 
 jobs:
   enviar_email:
