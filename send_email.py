@@ -26,9 +26,6 @@ meses = {
 # Obter a data atual
 data_atual = datetime.date.today()
 
-# Calcular a data do dia anterior
-data_anterior = data_atual - datetime.timedelta(days=1)
-
 # Converter o dia em uma string com dois dígitos
 dia_atual = data_atual.strftime("%d")
 
@@ -90,7 +87,7 @@ def gerar_corpo_email():
     mensagem.attach(parte_texto)
 
     # Anexo de arquivo CSV
-    caminho_arquivo = string_atual
+    caminho_arquivo = "data/" + string_atual
     nome_arquivo = string_atual
     with open(caminho_arquivo, "rb") as arquivo:
         parte_anexo = MIMEBase("application", "octet-stream")
