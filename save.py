@@ -33,7 +33,7 @@ mes_atual = meses[data_atual.month]
 ano_atual = data_atual.strftime("%Y")
 
 # Criar a string no formato desejado
-string_atual = "previsoes_" + dia_atual + "_" + mes_atual + "_" + ano_atual + ".csv"
+string_atual = "data/previsoes_" + dia_atual + "_" + mes_atual + "_" + ano_atual + ".csv"
 
 # Calcular a data do dia anterior
 data_anterior = data_atual - datetime.timedelta(days=1)
@@ -48,7 +48,7 @@ mes_anterior = meses[data_anterior.month]
 ano_anterior = data_anterior.strftime("%Y")
 
 # Criar a string no formato desejado
-string_anterior = "previsoes_" + dia_anterior + "_" + mes_anterior + "_" + ano_anterior + ".csv"
+string_anterior = "data/previsoes_" + dia_anterior + "_" + mes_anterior + "_" + ano_anterior + ".csv"
 
 
 
