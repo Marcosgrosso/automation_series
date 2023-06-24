@@ -1,0 +1,118 @@
+import smtplib
+from getpass import getpass
+import datetime
+from datetime import date
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+
+# Mapear os nomes dos meses em português
+meses = {
+    1: "janeiro",
+    2: "fevereiro",
+    3: "março",
+    4: "abril",
+    5: "maio",
+    6: "junho",
+    7: "julho",
+    8: "agosto",
+    9: "setembro",
+    10: "outubro",
+    11: "novembro",
+    12: "dezembro"
+}
+
+# Obter a data atual
+data_atual = datetime.date.today()
+
+# Calcular a data do dia anterior
+data_anterior = data_atual - datetime.timedelta(days=1)
+
+# Converter o dia em uma string com dois dígitos
+dia_atual = data_atual.strftime("%d")
+
+# Obter o mês do dia anterior em português
+mes_atual = meses[data_atual.month]
+
+# Obter o ano do dia anterior
+ano_atual = data_atual.strftime("%Y")
+
+# Criar a string no formato desejado
+string_atual = "previsoes_" + dia_atual + "_" + mes_atual + "_" + ano_atual + ".csv"
+
+def encaminhar_email(origem, senha, destino, assunto, mensagem):
+    try:
+        # Configurações do servidor SMTP
+        servidor_smtp = 'smtp.gmail.com'
+        porta_smtp = 587
+
+        # Criação da conexão com o servidor SMTP
+        conexao = smtplib.SMTP(servidor_smtp, porta_smtp)
+        conexao.starttls()
+
+        # Autenticação com as credenciais
+        conexao.login(origem, senha)
+
+        # Envio do e-mail
+        cabecalho = f"From: {origem}\nTo: {destino}\nSubject: {assunto}\n"
+        mensagem_completa = cabecalho + mensagem.as_string()
+        conexao.sendmail(origem, destino, mensagem_completa.encode('utf-8'))
+
+        # Encerramento da conexão com o servidor SMTP
+        conexao.quit()
+
+        print("E-mail enviado com sucesso!")
+    except smtplib.SMTPAuthenticationError:
+        print("Erro de autenticação: Nome de usuário ou senha inválidos.")
+    except smtplib.SMTPException as e:
+        print("Erro ao enviar o e-mail:", e)
+
+
+# Função para gerar o corpo do e-mail com base no dia da semana
+def gerar_corpo_email():
+    # Criação do corpo de e-mail
+    mensagem = MIMEMultipart()
+
+    # Texto do e-mail
+    texto = """
+    <p>Olá professor,</p>
+
+    <p>Segue em anexo o arquivo CSV contendo as <b>previsões diárias</b>.</p>
+
+    <p>Aqui está o link do nosso site, contendo mais informações sobre o modelo: <a href="https://gabrieltalasso-trabalho-series-streamlit-app-vug9p4.streamlit.app/">Site do trabalho</a></p>
+
+    <p>Cordialmente,</p>
+
+    <p>Marcos, Tiago e Gabriel</p>
+    """
+    parte_texto = MIMEText(texto, "html")
+    mensagem.attach(parte_texto)
+
+    # Anexo de arquivo CSV
+    caminho_arquivo = string_atual
+    nome_arquivo = string_atual
+    with open(caminho_arquivo, "rb") as arquivo:
+        parte_anexo = MIMEBase("application", "octet-stream")
+        parte_anexo.set_payload(arquivo.read())
+    encoders.encode_base64(parte_anexo)
+    parte_anexo.add_header(
+        "Content-Disposition",
+        f"attachment; filename= {nome_arquivo}",
+    )
+    mensagem.attach(parte_anexo)
+
+    return mensagem
+
+# Função para enviar o e-mail
+def enviar_email():
+    origem = 'seriestemporaiss@gmail.com'
+    senha = 'aloqkbbsftrgjiol'
+    destino = ['m236226@dac.unicamp.br'] # m236226@dac.unicamp.br, tiagohemont@hotmail.com
+    assunto = f"Previsões do dia {date.today()} - Trabalho de Séries Temporais"
+    mensagem = gerar_corpo_email()
+
+    # Encaminhar e-mail
+    encaminhar_email(origem, senha, destino, assunto, mensagem)
+
+enviar_email()
