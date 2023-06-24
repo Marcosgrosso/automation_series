@@ -1,4 +1,4 @@
-name: Enviar e-mail todo dia às 12h
+name: Enviar e-mail todo dia às 13h
 
 on:
   schedule:
