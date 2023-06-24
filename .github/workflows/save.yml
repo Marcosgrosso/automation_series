@@ -1,8 +1,7 @@
 name: Salvar arquivo csv todo dia às 12h 30min
 
 on:
-  schedule:
-    - cron: "30 12 * * *"
+  workflow_dispatch:
 
 jobs:
   save_data:
