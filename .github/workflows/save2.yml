@@ -1,0 +1,36 @@
+name: Salvar arquivo csv todo dia às 12h 30min
+
+on:
+  schedule:
+    - cron: "0 15 * * *"
+
+jobs:
+  save_data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código-fonte
+        uses: actions/checkout@v2
+
+      - name: Configurar ambiente Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+          
+      - name: Instalar dependências
+        run: pip install pandas schedule statsmodels meteostat 
+
+      - name: Executar código Python
+        run: python save.py
+          
+      # Add new files in data folder, commit along with other modified files, push
+      - name: Commit e push das alterações
+        run: |
+          git config --local user.name actions-user
+          git config --local user.email "actions@github.com"
+          git add data/*
+          git commit -m "Atualizar arquivo CSV $(date)"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          username: actions-user
