@@ -23,16 +23,18 @@ jobs:
       - name: Executar código Python
         run: python save.py
           
+      # Add new files in data folder, commit along with other modified files, push
       - name: Commit e push das alterações
         run: |
-          git config --local user.name actions-user
+          git config --local user.name github-actions
           git config --local user.email "actions@github.com"
           git add data/*
-          git commit -m "Atualizar arquivo CSV $(date)"
-          git checkout main    # troca de branch
-          git pull origin main # puxa as alterações da branch no remoto origin
+          git commit -am "Atualizar arquivo CSV $(date)"
           git push origin main
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          username: actions-user
+          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+          username: github-actions
+        
+        
+    
 
