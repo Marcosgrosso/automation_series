@@ -1,7 +1,11 @@
 name: Enviar e-mail todo dia às 13h
 
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["save"]
+    branches: main
+    types:
+      - completed
 
 jobs:
   enviar_email:
