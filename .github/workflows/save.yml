@@ -27,6 +27,7 @@ jobs:
         run: |
           git config --local user.name actions-user
           git config --local user.email "actions@github.com"
+          git pull origin main
           git add data/*
           git commit -m "Atualizar arquivo CSV $(date)"
           git push origin main
