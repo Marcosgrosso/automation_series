@@ -3,7 +3,7 @@ name: Salvar arquivo csv todo dia às 12h 30min
 # Controls when the action will run.
 on:
   schedule:
-    - cron: '0 18 * * *'
+    - cron: '40 21 * * *'
 
 jobs:
   save_data:
