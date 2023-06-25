@@ -32,7 +32,6 @@ jobs:
           git add data/*
           git commit -m "Atualizar arquivo CSV $(date)"
           git config pull.ff only       # fast-forward only
-          git checkout main    # troca de branch
           git pull origin main
           git push origin main
         env:
