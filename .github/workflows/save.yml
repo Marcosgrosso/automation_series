@@ -33,6 +33,7 @@ jobs:
           git commit -m "Atualizar arquivo CSV $(date)"
           git config --global pull.rebase false
           git checkout main    # troca de branch
+          git pull --ff-only
           git pull origin main
           git push origin main
         env:
