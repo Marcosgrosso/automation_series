@@ -105,7 +105,7 @@ def gerar_corpo_email():
 def enviar_email():
     origem = 'seriestemporaiss@gmail.com'
     senha = 'aloqkbbsftrgjiol'
-    destino = ['m236226@dac.unicamp.br', 't217517@dac.unicamp.br', 'g235078@dac.unicamp.br'] #, 't217517@dac.unicamp.br', 'g235078@dac.unicamp.br'
+    destino = ['m236226@dac.unicamp.br'] #, 't217517@dac.unicamp.br', 'g235078@dac.unicamp.br'
     assunto = f"Previsões do dia {date.today()} - Trabalho de Séries Temporais"
     mensagem = gerar_corpo_email()
 
