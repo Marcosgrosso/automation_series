@@ -75,7 +75,7 @@ def gerar_corpo_email():
     texto = """
     <p>Olá professor,</p>
 
-    <p>Segue em anexo o arquivo CSV contendo as <b>previsões diárias</b>. O arquivo contém o dia referente à predisão, a predição, o limite inferior e limite superior do intervalo de confiança com 95% de confiança para a predição.</p>
+    <p>Segue em anexo o arquivo CSV contendo as <b>previsões diárias</b>. O arquivo contém o dia em que a temperatura foi predita, a predição da temperatura média, o limite inferior e limite superior do intervalo com 95% de confiança para a previsão.</p>
 
     <p>Aqui está o link do nosso site, contendo mais informações sobre o modelo: <a href="https://gabrieltalasso-trabalho-series-streamlit-app-vug9p4.streamlit.app/">Site do trabalho</a></p>
 
@@ -85,8 +85,8 @@ def gerar_corpo_email():
 
     <p>Cordialmente,</p>
 
-    Marcos José Grosso Filho - 236226
-    Gabriel Ukstin Talasso - 235078
+    Marcos José Grosso Filho - 236226,
+    Gabriel Ukstin Talasso - 235078,
     Tiago Henrique Silva Monteiro - 217517
     """
     parte_texto = MIMEText(texto, "html")
