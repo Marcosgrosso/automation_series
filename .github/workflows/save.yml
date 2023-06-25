@@ -32,7 +32,6 @@ jobs:
           git add data/*
           git commit -m "Atualizar arquivo CSV $(date)"
           git merge --no-ff
-          git pull origin main
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
