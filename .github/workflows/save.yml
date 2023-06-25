@@ -35,23 +35,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           username: actions-user
-    
-  enviar_email:
-    needs: save_data
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout do código
-      uses: actions/checkout@v2
-
-    - name: Configurar ambiente Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x
-
-    - name: Instalar dependências
-      run: pip install schedule
-
-    - name: Enviar E-mail
-      run: python send_email.py
-
