@@ -3,7 +3,7 @@ name: Salvar arquivo csv todo dia às 12h 30min
 # Controls when the action will run.
 on:
   schedule:
-    - cron: '35 8 * * *'
+    - cron: '13 9 * * *'
 
 jobs:
   save_data:
@@ -31,8 +31,7 @@ jobs:
           git config --local user.email "actions@github.com"
           git add data/*
           git commit -m "Atualizar arquivo CSV $(date)"
-          git checkout main    # troca de branch
-          git pull origin main # puxa as alterações da branch no remoto origin
+          git pull --no-rebase origin main
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
