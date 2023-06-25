@@ -30,8 +30,7 @@ jobs:
           git config --local user.name actions-user
           git config --local user.email "actions@github.com"
           git add data/*
-          git commit -m "Atualizar arquivo CSV $(date)"
-          git merge --no-ff
+          git commit -am "GH ACTION Autorun $(date)"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
