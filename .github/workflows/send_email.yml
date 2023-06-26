@@ -1,4 +1,4 @@
-name: Enviar e-mail todo dia às 13h
+name: Enviar e-mail automatizado
 
 on:
   workflow_run:
