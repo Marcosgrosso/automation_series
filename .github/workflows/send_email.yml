@@ -2,7 +2,7 @@ name: Enviar e-mail todo dia às 13h
 
 on:
   workflow_run:
-    workflows: ["Salvar arquivo csv todo dia às 12h 30min"]
+    workflows: ["Salvar arquivo csv todo dia às 8h"]
     branches: main
     types:
       - completed
