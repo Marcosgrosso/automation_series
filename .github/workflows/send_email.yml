@@ -2,7 +2,7 @@ name: Enviar e-mail automatizado
 
 on:
   workflow_run:
-    workflows: ["Salvar arquivo csv todo dia às 8h"]
+    workflows: ["Salvar arquivo csv todo dia às 3h"]
     branches: main
     types:
       - completed
