@@ -1,9 +1,9 @@
-name: Salvar arquivo csv todo dia às 12h 30min
+name: Salvar arquivo csv todo dia às 8h
 
 # Controls when the action will run.
 on:
   schedule:
-    - cron: '20 18 * * *'
+    - cron: '00 5 * * *'
 
 
 jobs:
