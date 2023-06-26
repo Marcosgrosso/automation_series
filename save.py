@@ -59,7 +59,7 @@ dados = pd.read_csv(string_anterior, index_col = False)
 df = pd.DataFrame(dados)
 
 # Converter a coluna "dia" para o tipo datetime
-df['Dia'] = pd.to_datetime(df['Dia'])
+#df['Dia'] = pd.to_datetime(df['Dia'])
 
 # Criar uma nova linha
 input = predict()
