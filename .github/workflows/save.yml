@@ -1,4 +1,4 @@
-name: Salvar arquivo csv todo dia às 8h
+name: Salvar arquivo csv todo dia às 3h
 
 # Controls when the action will run.
 on:
